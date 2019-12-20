@@ -14,13 +14,17 @@ module.exports = {
   "parserOptions": {
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true,
-      "jsx": true
+      "tsx": true
     },
     "sourceType": "module",
     "ecmaVersion": 7
   },
+  "settings": {
+    "version": "detect"
+  },
   "plugins": [
-    "react"
+    "react",
+    "typescript"
   ],
   "rules": {
     "quotes": [2, "single"],
@@ -46,13 +50,15 @@ module.exports = {
     "no-duplicate-case": 2,
     "no-dupe-args": 2,
     "no-empty": 2,
+    "no-func-assign": 0,
+
     "no-func-assign": 2,
     "no-invalid-this": 0,
     "no-redeclare": 2,
     "no-spaced-func": 2,
     "no-this-before-super": 0,
     "no-undef": 2,
-    "no-use-before-define": 2,
+    "no-use-before-define": 0,
     "camelcase": 1,
     "jsx-quotes": [2, "prefer-double"],
     "react/display-name": 0,
@@ -99,7 +105,8 @@ module.exports = {
     "no-mixed-spaces-and-tabs": 0,
     "prefer-arrow-callback": 0,
     "arrow-parens": 0,
-    "arrow-spacing": 0
+    "arrow-spacing": 0,
+    
   },
   "settings": {
     "import/ignore": [

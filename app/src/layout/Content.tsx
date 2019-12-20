@@ -5,8 +5,7 @@ const Content: React.FC = () => {
   return (
     <div className="content">
       <Leftmenu />
-      <div className="view">
-      </div>
+      <div className="view"></div>
     </div>
   );
 };
