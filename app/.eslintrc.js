@@ -51,6 +51,8 @@ module.exports = {
     "no-dupe-args": 2,
     "no-empty": 2,
     "no-func-assign": 0,
+
+    "no-func-assign": 2,
     "no-invalid-this": 0,
     "no-redeclare": 2,
     "no-spaced-func": 2,
