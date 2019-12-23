@@ -65,25 +65,25 @@ module.exports = {
     "react/forbid-prop-types": [2, {
       "forbid": ["any"]
     }],
-    "react/jsx-boolean-value": 2,
-    "react/jsx-closing-bracket-location": 1,
-    "react/jsx-curly-spacing": [2, {
+    "react/tsx-boolean-value": 2,
+    "react/tsx-closing-bracket-location": 1,
+    "react/tsx-curly-spacing": [2, {
       "when": "never",
       "children": true
     }],
-    "react/jsx-indent-props": [2, 4],
-    "react/jsx-key": 2,
-    "react/jsx-max-props-per-line": [1, {
+    "react/tsx-indent-props": [2, 4],
+    "react/tsx-key": 2,
+    "react/tsx-max-props-per-line": [1, {
       "maximum": 1
     }],
-    "react/jsx-no-bind": 1,
-    "react/jsx-no-duplicate-props": 2,
-    "react/jsx-no-literals": 0,
-    "react/jsx-no-undef": 1,
-    "react/jsx-pascal-case": 0,
-    "react/jsx-sort-props": 2,
-    "react/jsx-uses-react": 1,
-    "react/jsx-uses-vars": 2,
+    "react/tsx-no-bind": 1,
+    "react/tsx-no-duplicate-props": 2,
+    "react/tsx-no-literals": 0,
+    "react/tsx-no-undef": 1,
+    "react/tsx-pascal-case": 0,
+    "react/tsx-sort-props": 2,
+    "react/tsx-uses-react": 1,
+    "react/tsx-uses-vars": 2,
     "react/no-danger": 0,
     "react/no-did-mount-set-state": 0,
     "react/no-did-update-set-state": 1,
