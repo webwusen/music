@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Leftmenu from './Leftmenu';
 import Discover from '@/pages/discover/Discover';
 import Fm from '@/pages/fm/Fm'
@@ -13,8 +13,9 @@ class Content extends Component {
           {this.props.children}
           <HashRouter>
             <Switch>
-              <Route exact path="/discover" component={Discover} />
-              <Route exact path="/fm" component={Fm} />
+              <Route path="/discover" component={Discover} />
+              <Route path="/fm" component={Fm} />
+              <Redirect exact from="/" to="/discover/recommend" />
             </Switch>
           </HashRouter>
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 const Recommend: React.FC = () => (
   <div className='l-rec'>
-      我喜欢
+    我喜欢
   </div>
 );
 

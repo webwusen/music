@@ -1,30 +1,31 @@
 import React from 'react';
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import { Route, Link, Switch } from 'react-router-dom';
 import './style/tab.less';
 import Recommend from './Recommend';
+import SongList from './SongList';
 
-const Discover: React.FC = () => (
-  <Router>
+const Discover: React.FC = (props) => (
+  <div className="l-disbox">
     <ul className="l-ul">
       <li>
-        <Link to="/recommend">个性推荐</Link>
+        <Link to="/discover/recommend">个性推荐</Link>
       </li>
-      <li>歌单</li>
+      <li>
+        <Link to="/discover/songlist">歌单</Link>
+      </li>
       <li>主播电梯</li>
       <li>排行榜</li>
       <li>歌手</li>
       <li>最新音乐</li>
     </ul>
-    <Route path="/recommend" component={Recommend} />
-    {/* <Conternt /> */}
-  </Router>
+    <div>
+      {props.children}
+      <Switch>
+        <Route path="/discover/recommend" component={Recommend} />
+        <Route path="/discover/songlist" component={SongList} />
+      </Switch>
+    </div>
+  </div>
 );
-// class Discover extends Component {
-//   render() {
-//     return (
-
-//     );
-//   }
-// }
 
 export default Discover;
