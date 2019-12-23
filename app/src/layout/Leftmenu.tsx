@@ -1,25 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-const Leftmenu: React.FC = () => {
-  return (
-    <div className="menu">
-      <div>
-        <Link to="../pages/discover/Discover.tsx">
-          <span>hello word</span>
-        </Link>
-      </div>
-      <div>
-        <Link to="./">
-          <span>hello react</span>
-        </Link>
-      </div>
-      <div>
-        <Link to="./">
-          <span>hello typescript</span>
-        </Link>
-      </div>
+
+const Leftmenu: React.FC = () => (
+  <div className="menu">
+    <div>
+      <Link to="/discover">
+        <span>hello discover</span>
+      </Link>
     </div>
-  );
-};
+    <div>
+      <Link to="/fm">
+        <span>hello fm</span>
+      </Link>
+    </div>
+  </div>
+);
 
 export default Leftmenu;
