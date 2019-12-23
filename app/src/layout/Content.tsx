@@ -1,12 +1,16 @@
 import React from 'react';
-import Leftmenu from './Leftmenu';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Discover from '../pages/discover/Discover'
 
 const Content: React.FC = () => {
   return (
+    <Router>
     <div className="content">
-      <Leftmenu />
-      <div className="view"></div>
+      <div className="view">
+           <Route path='{Discover}' component={Discover} />
+      </div>
     </div>
+    </Router>
   );
 };
 
