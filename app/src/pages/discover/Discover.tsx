@@ -7,7 +7,6 @@ import SongList from './SongList';
 interface listData {
   path: string;
   name: string;
-  currentIndex: number;
 }
 interface State {
   list: Array<listData>;
@@ -25,28 +24,23 @@ class Discover extends React.Component<Props, State> {
       list: [
         {
           path: '/discover/recommend',
-          name: '个性推荐',
-          currentIndex: 0
+          name: '个性推荐'
         },
         {
           path: '/discover/songlist',
-          name: '歌单',
-          currentIndex: 1
+          name: '歌单'
         },
         {
           path: '/discover/recommend',
-          name: '主播电台',
-          currentIndex: 2
+          name: '主播电台'
         },
         {
           path: '/discover/recommend',
-          name: '歌手',
-          currentIndex: 3
+          name: '歌手'
         },
         {
           path: '/discover/recommend',
-          name: '最新音乐',
-          currentIndex: 4
+          name: '最新音乐'
         }
       ],
       active: 0
