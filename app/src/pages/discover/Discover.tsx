@@ -1,7 +1,7 @@
 import React from 'react';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Link, Switch, Redirect } from 'react-router-dom';
 import './style/tab.less';
-import Recommend from './RecommEnd';
+import Recommend from './Recommend';
 import SongList from './SongList';
 
 interface listData {
@@ -69,6 +69,7 @@ class Discover extends React.Component<Props, State> {
           <Switch>
             <Route path="/discover/recommend" component={Recommend} />
             <Route path="/discover/songlist" component={SongList} />
+            <Redirect exact from="/discover" to="/discover/recommend" />
           </Switch>
         </div>
       </div>

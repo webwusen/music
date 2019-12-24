@@ -15,7 +15,7 @@ class Content extends Component {
             <Switch>
               <Route path="/discover" component={Discover} />
               <Route path="/fm" component={Fm} />
-              <Redirect exact from="/" to="/discover/recommend" />
+              <Redirect exact from="/" to="/discover" />
             </Switch>
           </HashRouter>
         </div>
