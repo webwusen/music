@@ -1,16 +1,17 @@
 import React from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 import './style/tab.less';
-import Recommend from './Recommend';
+import Recommend from './RecommEnd';
 import SongList from './SongList';
 
 interface listData {
   path: string;
   name: string;
-  id: number;
+  currentIndex: number;
 }
 interface State {
   list: Array<listData>;
+  active: number;
 }
 
 interface Props {
@@ -25,42 +26,50 @@ class Discover extends React.Component<Props, State> {
         {
           path: '/discover/recommend',
           name: '个性推荐',
-          id: 1
+          currentIndex: 0
         },
         {
           path: '/discover/songlist',
           name: '歌单',
-          id: 2
+          currentIndex: 1
         },
         {
-          path: '/discover/recommendsss',
+          path: '/discover/recommend',
           name: '主播电台',
-          id: 3
+          currentIndex: 2
         },
         {
-          path: '/discover/recommendss',
+          path: '/discover/recommend',
           name: '歌手',
-          id: 4
+          currentIndex: 3
         },
         {
-          path: '/discover/recommends',
+          path: '/discover/recommend',
           name: '最新音乐',
-          id: 5
+          currentIndex: 4
         }
-      ]
+      ],
+      active: 0
     };
   }
-  public render() {
-    const menu = this.state.list.map((item, index) => {
-      <li key={index}>
-        <Link to={item.path}>{item.name}</Link>
-      </li>;
+  public switchClass = (index: any) => {
+    this.setState({
+      active: index
     });
+  };
+  public render() {
+    const menu = this.state.list.map((item, index) => (
+      <li
+        key={index}
+        className={index === this.state.active ? 'l-active' : undefined}
+        onClick={() => this.switchClass(index)}
+      >
+        <Link className={index === this.state.active ? 'l-textc' : undefined} to={item.path}>{item.name}</Link>
+      </li>
+    ));
     return (
       <div className="l-disbox">
-        <ul className="l-ul">
-           {menu}       
-        </ul>
+        <ul className="l-ul">{menu}</ul>
         <div>
           {this.props.children}
           <Switch>
