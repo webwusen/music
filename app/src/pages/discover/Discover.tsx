@@ -4,53 +4,53 @@ import './style/tab.less';
 import Recommend from './Recommend';
 import SongList from './SongList';
 
-interface listData { 
-      url:string,
-      name:string 
-    }
- interface State {
-  list: Array<object>;
+interface listData {
+  path: string,
+  name: string
+}
+interface State {
+  list: Array<listData>;
 }
 
- interface Props {
-   home: string;
+interface Props {
+  home: string;
 }
 
 class Discover extends React.Component<Props, State> {
-  constructor(props:Props) {
+  constructor(props: Props) {
     super(props);
-    
+
     this.state = {
       list: [
         {
-          path:'/discover/recommend',
-          name:'个性推荐'
+          path: '/discover/recommend',
+          name: '个性推荐'
         },
         {
-          path:'/discover/recommend',
-          name:'个性推荐'
+          path: '/discover/recommend',
+          name: '个性推荐'
         },
         {
-          path:'/discover/recommend',
-          name:'个性推荐'
+          path: '/discover/recommend',
+          name: '个性推荐'
         },
         {
-          path:'/discover/recommend',
-          name:'个性推荐'
+          path: '/discover/recommend',
+          name: '个性推荐'
         }
       ]
     };
   }
   public render() {
+    const menu = this.state.list.map((item, index) => (
+      <li key={index}>
+        <Link to={item.path}>{item.name}</Link>
+      </li>
+    ));
     return (
       <div className="l-disbox">
         <ul className="l-ul">
-          {this.state.list.map((item,index)=>{
-            console.log(item)
-              return <li>
-                     <Link to={item.path}>{item.name}</Link>
-                    </li>
-          })}
+          {}
           {/* <li>
             <Link to="/discover/recommend">个性推荐</Link>
           </li>
