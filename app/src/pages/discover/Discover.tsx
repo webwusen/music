@@ -1,7 +1,7 @@
 import React from 'react';
-import { Route, Link, Switch, Redirect } from 'react-router-dom';
+import { Route, Link, Switch,Redirect } from 'react-router-dom';
 import './style/tab.less';
-import Recommend from './Recommend';
+import Recommend from './Recommend'
 import SongList from './SongList';
 
 interface listData {
@@ -40,7 +40,7 @@ class Discover extends React.Component<Props, State> {
         },
         {
           path: '/discover/recommend',
-          name: '最新音乐'
+          name: '最新音乐',
         }
       ],
       active: 0

@@ -1,5 +1,5 @@
 import React from 'react';
-import './style/RecommEnd.less';
+import './style/Recommend.less';
 const Recommend: React.FC = () => (
   <div className="l-rec">
     {/* 轮播 */}
@@ -19,10 +19,10 @@ const Recommend: React.FC = () => (
         <li>
           <a href="/">
             <div className="l-songimg">
-              <div className='l-maskbox'>
-                   <div className='l-mask'></div> 
-                   <p>根据您的音乐口味生成每日更新每日更新每日更新每日更新每日更新每日更新</p>
-              </div>  
+              <div className="l-maskbox">
+                <div className="l-mask"></div>
+                <p>根据您的音乐口味生成每日更新每日更新每日更新每日更新每日更新每日更新</p>
+              </div>
             </div>
             <p>每日歌曲推荐</p>
           </a>
