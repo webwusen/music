@@ -28,8 +28,7 @@
     "*.cjson": "jsonc",
     "*.wxss": "css",
     "*.wxs": "javascript",
-    "*.html": "html",
-    "*.tsx": "tsx"
+    "*.html": "html"
   },
   "emmet.includeLanguages": {
     "wxml": "html"
