@@ -75,7 +75,18 @@ const requestPromise = (method: string, url: string, body: Params) => {
       data: JSON.stringify(body)
     };
   }
-  return fetch(Nurl, { ...config, ...Nconfig });
+  return new Promise((resolve, reject) => {
+    fetch(Nurl, { ...config, ...Nconfig })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return Promise.reject(`${res.status}:${res.statusText}`);
+        }
+      })
+      .then((data) => resolve(data))
+      .catch((err) => reject(err));
+  });
 };
 
 const _request = (params: paramsObj) => {
