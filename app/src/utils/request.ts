@@ -1,5 +1,4 @@
-import { rejects } from 'assert';
-
+import message from 'antd/es/message';
 /* const request = (url: string, config: any) => {
   return fetch(url, config)
     .then((res: any) => {
@@ -25,6 +24,8 @@ export const post = (url: string, data: any) => {
   });
 }; */
 
+const baseUrl = 'http://localhost:4000';
+
 interface Params {
   [propName: string]: any;
 }
@@ -41,7 +42,7 @@ let signal = controller.signal;
 
 // 超时promise
 const timeoutPromise = (timeout: number = 10000) => {
-  return new Promise((resolve, rejects) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve(new Response('timeout', { status: 504, statusText: 'timeout' }));
       // 终止fetch请求
@@ -52,7 +53,7 @@ const timeoutPromise = (timeout: number = 10000) => {
 
 const requestPromise = (method: string, url: string, body: Params) => {
   let Nmethod: string = method.toUpperCase();
-  let Nurl: string = url;
+  let Nurl: string = baseUrl + url;
   let config: Params = {
     signal: signal,
     method: Nmethod
@@ -84,18 +85,22 @@ const requestPromise = (method: string, url: string, body: Params) => {
           return Promise.reject(`${res.status}:${res.statusText}`);
         }
       })
-      .then((data) => resolve(data))
-      .catch((err) => reject(err));
+      .then((data) => {
+        resolve(data);
+      })
+      .catch((err) => {
+        message.error(err);
+        return reject(err);
+      });
   });
 };
 
 const _request = (params: paramsObj) => {
-  return () => {
-    Promise.race([
-      timeoutPromise(params.timeout),
-      requestPromise(params.method, params.url, params.body)
-    ]);
-  };
+  console.log(params);
+  return Promise.race([
+    timeoutPromise(params.timeout),
+    requestPromise(params.method, params.url, params.body)
+  ]);
 };
 
 interface requestParams {
