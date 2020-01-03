@@ -14,12 +14,6 @@ const Layout: React.FC = () => {
     }).then((res: any) => {
       console.log(res);
     });
-    /* login({
-      email: 'wysen1994@163.com',
-      password: 'ws1994825'
-    }).then((res: any) => {
-      console.log(res);
-    }); */
   }, []);
 
   return (
