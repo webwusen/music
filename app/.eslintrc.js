@@ -71,7 +71,6 @@ module.exports = {
       "when": "never",
       "children": true
     }],
-    "react/jsx-indent-props": [2, 4],
     "react/jsx-key": 2,
     "react/jsx-no-bind": 1,
     "react/jsx-no-duplicate-props": 2,

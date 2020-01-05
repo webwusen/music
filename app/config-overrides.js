@@ -1,16 +1,18 @@
 const { override, fixBabelImports, addLessLoader, addWebpackAlias, addDecoratorsLegacy } = require('customize-cra');
-const path = require('path')
+const path = require('path');
 
 module.exports = override(
   fixBabelImports('import', {
     libraryName: 'antd',
     libraryDirectory: 'es',
-    style: true,
+    style: true
   }),
   addWebpackAlias({
-    "@": path.resolve(__dirname, 'src')
+    '@': path.resolve(__dirname, 'src')
   }),
-  addLessLoader(),
+  addLessLoader({
+    javascriptEnabled: true
+  }),
   addDecoratorsLegacy(),
   (config) => {
     const loaders = config.module.rules.find(rule => Array.isArray(rule.oneOf)).oneOf;
@@ -19,7 +21,7 @@ module.exports = override(
       options: {
         resources: path.resolve(__dirname, 'src/styles/var.less')
       }
-    })
+    });
     return config;
   }
 );
