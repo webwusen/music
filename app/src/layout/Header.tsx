@@ -25,7 +25,7 @@ class Login extends React.Component<Props> {
       if (!err) {
         console.log('Received values of form: ', values);
         login({
-          email: values.username,
+          email: values.username + '@163.com',
           password: values.password
         }).then((res: any) => {
           console.log(res);
