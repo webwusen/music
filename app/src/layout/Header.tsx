@@ -9,14 +9,15 @@ interface value {
   username: string;
   password: string;
 }
+const { Search } = Input;
 
 class Login extends React.Component<Props> {
   state = {
     show: false
   };
-  changeShow() {
+  changeShow(val: boolean) {
     this.setState({
-      show: !this.state.show
+      show: val
     });
   }
   handleSubmit = (e: any) => {
@@ -39,6 +40,9 @@ class Login extends React.Component<Props> {
     return (
       <div className="header clearfix">
         <div className={`login ${this.state.show ? 'show' : ''}`}>
+          <div className="login-close" onClick={this.changeShow.bind(this, false)}>
+            <Icon type="close" />
+          </div>
           <Form onSubmit={this.handleSubmit} className="login-form">
             <Form.Item>
               {getFieldDecorator('username', {
@@ -67,9 +71,29 @@ class Login extends React.Component<Props> {
           </Button>
           </Form>
         </div>
-        <div className="logo fl">音乐台</div>
-        <div className="tools fr">
-          <div className="user-box" onClick={this.changeShow.bind(this)} >
+        <div className="logo fl">
+          <div className="login-icon">
+            <span className="iconfont iconwangyiyunyinle"></span>
+          </div>音乐台
+        </div>
+        <div className="tools fl">
+          <div className="page-btn">
+            <span>
+              <Icon type="left" />
+            </span>
+            <span>
+              <Icon type="right" />
+            </span>
+          </div>
+          <div className="search-bar">
+            <Search
+              placeholder="搜索音乐，视频，歌词，电台"
+              onSearch={value => console.log(value)}
+            />
+          </div>
+        </div>
+        <div className="user-bar fr">
+          <div className="user-box" onClick={this.changeShow.bind(this, true)} >
             <div className="user">
               <Icon type="user" />
             </div>

@@ -13,10 +13,103 @@
   background-color: @theme-color;
 
   .logo {
+    display: flex;
+    align-items: center;
     color: #fff;
+
+    .login-icon {
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      text-align: center;
+      border-radius: 50%;
+      background-color: #fff;
+      color: @theme-color;
+      margin-right: 10px;
+    }
   }
 
   .tools {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-left: 60px;
+
+    .page-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 53px;
+      height: 22px;
+      margin-right: 10px;
+      border: 1px solid #A82828;
+      border-radius: 3px;
+
+      span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+        cursor: pointer;
+        color: #C77373;
+
+        &:first-child {
+          border-right: 1px solid #A82828;
+        }
+
+        &.active,
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+
+    .search-bar {
+      width: 220px;
+      height: 22px;
+
+      .ant-input-search {
+        vertical-align: top;
+      }
+
+      .ant-input {
+        height: 22px;
+        line-height: 22px;
+        padding: 0 11px;
+        background-color: #A82828;
+        border: 1px solid #A82828;
+        border-radius: 11px;
+        font-size: 12px;
+        color: #fff;
+
+        &::-webkit-input-placeholder {
+          color: #C77373;
+        }
+
+        &::-moz-placeholder {
+          /* Mozilla Firefox 19+ */
+          color: #C77373;
+        }
+
+        &:-moz-placeholder {
+          /* Mozilla Firefox 4 to 18 */
+          color: #C77373;
+        }
+
+        &:-ms-input-placeholder {
+          /* Internet Explorer 10-11 */
+          color: #C77373;
+        }
+      }
+
+      .ant-input-suffix .anticon {
+        color: #fff;
+      }
+    }
+  }
+
+  .user-bar {
     display: flex;
     align-items: center;
     height: 100%;
@@ -110,11 +203,23 @@
   position: fixed;
   width: 350px;
   padding: 20px;
+  padding-top: 40px;
   background-color: #fff;
   left: 50%;
   top: 50px;
   transform: translateX(-50%);
   box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+
+  .login-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+  }
 
   &.show {
     display: block;
