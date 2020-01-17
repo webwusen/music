@@ -32,7 +32,7 @@ class Carousel extends React.Component<Props, State> {
           {list.map((item, key) => {
             return (
               <div key={key} className={`slide ${[item.name]}`}>
-                <img src={`../../asset/imgae/${key + 1}.jpg`} alt="" />
+                <img src={require(`@/asset/imgae/${key + 1}.jpg`)} alt="" />
                 <div className="masking">{''}</div>
               </div>
             );

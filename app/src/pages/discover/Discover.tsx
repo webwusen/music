@@ -46,12 +46,12 @@ class Discover extends React.Component<Props, State> {
       active: 0
     };
   }
-  public switchClass = (index: any) => {
+  switchClass = (index: any) => {
     this.setState({
       active: index
     });
   };
-  public render() {
+  render() {
     const menu = this.state.list.map((item, index) => (
       <li
         key={index}
