@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Link, Switch, Redirect } from 'react-router-dom';
 import './style/tab.less';
-import Recommend from './Recommend'
+import Recommend from './Recommend';
 import SongList from './SongList';
 
 interface listData {
@@ -40,7 +40,7 @@ class Discover extends React.Component<Props, State> {
         },
         {
           path: '/discover/recommend',
-          name: '最新音乐',
+          name: '最新音乐'
         }
       ],
       active: 0
@@ -58,7 +58,9 @@ class Discover extends React.Component<Props, State> {
         className={index === this.state.active ? 'l-active' : undefined}
         onClick={() => this.switchClass(index)}
       >
-        <Link className={index === this.state.active ? 'l-textc' : undefined} to={item.path}>{item.name}</Link>
+        <Link className={index === this.state.active ? 'l-textc' : undefined} to={item.path}>
+          {item.name}
+        </Link>
       </li>
     ));
     return (
