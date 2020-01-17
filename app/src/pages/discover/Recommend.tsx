@@ -1,5 +1,6 @@
 import React from 'react';
 import './style/Recommend.less';
+
 const Recommend: React.FC = () => (
   <div className="l-rec">
     {/* 轮播 */}
