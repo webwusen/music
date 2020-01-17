@@ -5,6 +5,7 @@ interface listData {
 }
 interface State {
   list: Array<listData>;
+  current: number
 }
 
 interface Props { }
@@ -21,9 +22,11 @@ class Carousel extends React.Component<Props, State> {
         { name: 'normal' },
         { name: 'normal' },
         { name: 'end' }
-      ]
+      ],
+      current: 0,
     };
   }
+
   render() {
     const { list } = this.state;
     return (
@@ -32,11 +35,23 @@ class Carousel extends React.Component<Props, State> {
           {list.map((item, key) => {
             return (
               <div key={key} className={`slide ${[item.name]}`}>
-                <img src={require(`@/asset/imgae/${key + 1}.jpg`)} alt="" />
-                <div className="masking">{''}</div>
+                <img src={require(`@/assets/images/${key + 1}.jpg`)} alt="" />
+                <div className="masking" >{''}</div>
               </div>
             );
           })}
+          <div className='point'>
+            {
+              this.state.list.map((item, key) => {
+                return (
+                  <span
+                    key={key}
+                    className={item.name === 'start' ? 'point.hover' : ''}
+                  >{}</span>
+                );
+              })
+            }
+          </div>
         </div>
       </div>
     );
