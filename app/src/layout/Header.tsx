@@ -1,8 +1,9 @@
 import React from 'react';
-import { Form, Icon, Input, Button } from 'antd';
+import { Icon, Input } from 'antd';
 import { login } from '@/api/layout';
+import Login from './Login';
 interface Props {
-  form: any;
+  [propName: string]: any
 }
 
 interface value {
@@ -11,11 +12,11 @@ interface value {
 }
 const { Search } = Input;
 
-class Login extends React.Component<Props> {
+class Header extends React.Component<Props, Object> {
   state = {
     show: false
-  };
-  changeShow(val: boolean) {
+  }
+  changeShow = (val: boolean) => {
     this.setState({
       show: val
     });
@@ -24,7 +25,6 @@ class Login extends React.Component<Props> {
     e.preventDefault();
     this.props.form.validateFields((err: Boolean, values: value) => {
       if (!err) {
-        console.log('Received values of form: ', values);
         login({
           email: values.username + '@163.com',
           password: values.password
@@ -33,44 +33,12 @@ class Login extends React.Component<Props> {
         });
       }
     });
-  };
+  }
 
   render() {
-    const { getFieldDecorator } = this.props.form;
     return (
       <div className="header clearfix">
-        <div className={`login ${this.state.show ? 'show' : ''}`}>
-          <div className="login-close" onClick={this.changeShow.bind(this, false)}>
-            <Icon type="close" />
-          </div>
-          <Form onSubmit={this.handleSubmit} className="login-form">
-            <Form.Item>
-              {getFieldDecorator('username', {
-                rules: [{ required: true, message: '请输入邮箱' }]
-              })(
-                <Input
-                  prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                  placeholder="Username"
-                  suffix="@163.com"
-                />
-              )}
-            </Form.Item>
-            <Form.Item>
-              {getFieldDecorator('password', {
-                rules: [{ required: true, message: '请输入密码!' }]
-              })(
-                <Input
-                  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                  type="password"
-                  placeholder="Password"
-                />
-              )}
-            </Form.Item>
-            <Button type="primary" htmlType="submit" className="login-form-button">
-              登录
-          </Button>
-          </Form>
-        </div>
+        <Login show={this.state.show} showFunc={this.changeShow} />
         <div className="logo fl">
           <div className="login-icon">
             <span className="iconfont iconwangyiyunyinle"></span>
@@ -106,5 +74,5 @@ class Login extends React.Component<Props> {
     );
   }
 }
-const WrappedRegistrationForm = Form.create()(Login);
-export default WrappedRegistrationForm;
+
+export default Header;
