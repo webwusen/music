@@ -24,7 +24,7 @@ export const post = (url: string, data: any) => {
   });
 }; */
 
-const baseUrl = 'http://localhost:4000';
+const baseUrl = 'http://localhost:3000';
 
 interface Params {
   [propName: string]: any;

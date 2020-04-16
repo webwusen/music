@@ -1,15 +1,25 @@
-import React, { useState } from 'react';
-import { Icon, Input } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Avatar, Icon, Input } from 'antd';
 import Login from './Login';
 const { Search } = Input;
+
+
 
 const Header: React.FC = () => {
 
   const [show, setShow] = useState(false);
+  const [info, setInfo] = useState({ userName: '未登录' });
+
+  useEffect(() => {
+    const userInfo: any = localStorage.getItem('userInfo');
+    if (userInfo) {
+      setInfo(JSON.parse(userInfo));
+    };
+  }, [])
 
   return (
     <div className="header clearfix">
-      <Login show={show} showFunc={setShow} />
+      <Login show={show} showFunc={setShow} setInfoFunc={setInfo} />
       <div className="logo fl">
         <div className="login-icon">
           <span className="iconfont iconwangyiyunyinle"></span>
@@ -32,11 +42,11 @@ const Header: React.FC = () => {
         </div>
       </div>
       <div className="user-bar fr">
-        <div className="user-box" onClick={() => setShow(true)} >
+        <div className="user-box" onClick={() => setShow(!show)} >
           <div className="user">
-            <Icon type="user" />
+            <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
           </div>
-          <span className="username">未登录</span>
+          <span className="username">{info.userName}</span>
           <Icon type="caret-down" />
         </div>
       </div>
