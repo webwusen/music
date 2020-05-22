@@ -111,6 +111,11 @@
     // background: #ccc;
     .slide {
       position: absolute;
+      transition: all 0.3s ease-in-out;
+      user-select: none; // 禁止用户选中(防止图片被选中时变色);
+      &:hover{ // 鼠标经过时显示小手样式
+         cursor: pointer;
+      }
       img {
         width: 100%;
       }
@@ -121,12 +126,16 @@
         width: 100%;
         height: 100%;
         background: rgba(0, 0, 0, 0.15);
+        transition: all 0.3s 0.2s linear;
       }
       &.middle {
         left: 20%;
         bottom: 0%;
         width: 60%;
         z-index: 33;
+        .masking{
+          background: transparent;
+        }
       }
       &.start {
         left: 0%;
