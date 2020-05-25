@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Avatar, Icon, Input } from 'antd';
 import Login from './Login';
+import styles from '@/styles/layout.module.less';
+
 const { Search } = Input;
-
-
 
 const Header: React.FC = () => {
 
@@ -18,15 +18,15 @@ const Header: React.FC = () => {
   }, [])
 
   return (
-    <div className="header clearfix">
+    <div className={`${styles['header']} clearfix`}>
       <Login show={show} showFunc={setShow} setInfoFunc={setInfo} />
-      <div className="logo fl">
-        <div className="login-icon">
+      <div className={`${styles['logo']} fl`}>
+        <div className={`${styles['login-icon']}`}>
           <span className="iconfont iconwangyiyunyinle"></span>
         </div>音乐台
-        </div>
-      <div className="tools fl">
-        <div className="page-btn">
+      </div>
+      <div className={`${styles['tools']} fl`}>
+        <div className={`${styles['page-btn']}`}>
           <span>
             <Icon type="left" />
           </span>
@@ -34,19 +34,19 @@ const Header: React.FC = () => {
             <Icon type="right" />
           </span>
         </div>
-        <div className="search-bar">
+        <div className={`${styles['search-bar']}`}>
           <Search
             placeholder="搜索音乐，视频，歌词，电台"
             onSearch={value => console.log(value)}
           />
         </div>
       </div>
-      <div className="user-bar fr">
-        <div className="user-box" onClick={() => setShow(!show)} >
+      <div className={`${styles['user-bar']} fr`}>
+        <div className={`${styles['user-box']}`} onClick={() => setShow(!show)} >
           <div className="user">
             <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
           </div>
-          <span className="username">{info.userName}</span>
+          <span className={`${styles['username']}`}>{info.userName}</span>
           <Icon type="caret-down" />
         </div>
       </div>

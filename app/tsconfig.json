@@ -20,7 +20,12 @@
     "noEmit": true,
     "jsx": "react"
   },
+  "includes": [
+    "./src",
+    "./externals.d.ts"
+  ],
   "include": [
-    "src"
+    "./src",
+    "./externals.d.ts"
   ]
 }
