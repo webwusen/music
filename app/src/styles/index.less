@@ -52,17 +52,42 @@ a {
   display: table;
 }
 
+.noselect {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+
+  -webkit-user-select: none;
+  /* Chrome/Safari/Opera */
+
+  -khtml-user-select: none;
+  /* Konqueror */
+
+  -moz-user-select: none;
+  /* Firefox */
+
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+
+  user-select: none;
+  /* Non-prefixed version, currently */
+}
+
 // 覆盖antd样式
-.ant-input:hover {
-  border-color: #C72E2E !important;
+body .ant-input:hover {
+  border-color: #C72E2E;
 }
 
-.ant-input:focus {
-  border-color: #C72E2E !important;
-  -webkit-box-shadow: 0 0 0 2px rgba(199, 46, 46, 0.2) !important;
-  box-shadow: 0 0 0 2px rgba(199, 46, 46, 0.2) !important;
+body .ant-input:focus {
+  border-color: #C72E2E;
+  -webkit-box-shadow: 0 0 0 2px rgba(199, 46, 46, 0.2);
+  box-shadow: 0 0 0 2px rgba(199, 46, 46, 0.2);
 }
 
-.ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled) {
-  border-color: #C72E2E !important;
+body .ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled) {
+  border-color: #C72E2E;
+}
+
+body .ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #ea4848;
+  border-color: #ea4848;
 }

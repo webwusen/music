@@ -8,6 +8,6 @@ export function login(params: loginParams): any {
   return request({
     method: 'get',
     url: '/login',
-    params: params
+    params
   });
 }

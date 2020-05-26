@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import styles from '@/layout/index.module.less';
 
 interface ChildrenItem {
   title: string;
@@ -47,11 +48,11 @@ const Leftmenu: React.FC = (props: any) => {
   const [active, setActive] = useState(`/${pathname}`);
 
   const ListItems = menuList.map((item, index) => (
-    <div className="menu-item" key={index}>
-      <div className="title">{item.title}</div>
+    <div className={`${styles['menu-item']}`} key={index}>
+      <div className={`${styles['title']}`}>{item.title}</div>
       {
         item.children.map(ele => (
-          <Link key={ele.id} to={ele.path} className={active === ele.id ? 'active' : ''} onClick={() => setActive(ele.id)}>
+          <Link key={ele.id} to={ele.path} className={active === ele.id ? `${styles['active']}` : ''} onClick={() => setActive(ele.id)}>
             <span className={`iconfont ${ele.icon}`}></span><span>{ele.title}</span>
           </Link>
         ))
@@ -60,8 +61,8 @@ const Leftmenu: React.FC = (props: any) => {
   ));
 
   return (
-    <div className="menu">
-      <div className="menu-list">{ListItems}</div>
+    <div className={`${styles['menu']}`}>
+      <div className={`${styles['menu-list']}`}>{ListItems}</div>
     </div >
   );
 };

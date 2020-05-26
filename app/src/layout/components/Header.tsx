@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Avatar, Icon, Input } from 'antd';
 import Login from './Login';
-import styles from '@/styles/layout.module.less';
+import styles from '@/layout/index.module.less';
 
 const { Search } = Input;
 
