@@ -5,8 +5,9 @@ interface loginParams {
   password: string
 }
 export function login(params: loginParams): any {
-  return request.get({
+  return request({
+    method: 'get',
     url: '/login',
-    body: params
+    params: params
   });
 }

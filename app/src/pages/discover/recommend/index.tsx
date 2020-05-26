@@ -1,29 +1,29 @@
 import React from 'react';
-import './style/Recommend.less';
-import Carousel from './Carousel';
+import styles from './index.module.less';
+import Carousel from './components/Carousel';
 const Recommend: React.FC = () => (
-  <div className="l-rec">
+  <div className={`${styles['l-rec']}`}>
     {/* 轮播 */}
-    <div className="l-carousel">
+    <div className={`${styles['l-carousel']}`}>
       <Carousel />
     </div>
     {/* 推荐歌单 */}
-    <div className="l-push">
-      <div className="l-title">
+    <div className={`${styles['l-push']}`} >
+      <div className={`${styles['l-title']}`} >
         <p>推荐歌单</p>
       </div>
-      <div className="l-more">
+      <div className={`${styles['l-more']}`} >
         <a href="/">更多></a>
       </div>
     </div>
     {/* 歌单 */}
-    <div className="l-songlist">
+    <div className={`${styles['l-songlist']}`} >
       <ul>
         <li>
           <a href="/">
-            <div className="l-songimg">
-              <div className="l-maskbox">
-                <div className="l-mask"></div>
+            <div className={`${styles['l-songimg']}`} >
+              <div className={`${styles['l-maskbox']}`} >
+                <div className={`${styles['l-mask']}`} ></div>
                 <p>根据您的音乐口味生成每日更新每日更新每日更新每日更新每日更新每日更新</p>
               </div>
             </div>
@@ -33,11 +33,11 @@ const Recommend: React.FC = () => (
       </ul>
     </div>
     {/* 独家放送 */}
-    <div className="l-push">
+    <div className={`${styles['l-push']}`}>
       <div className="l-title">
         <p>独家放送</p>
       </div>
-      <div className="l-more">
+      <div className={`${styles['l-more']}`} >
         <a href="/">更多></a>
       </div>
     </div>
