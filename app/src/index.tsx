@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/var.less';
-import './styles/index.less';
 import './font/iconfont.css';
+import './styles/index.less';
 import App from './app';
 import * as serviceWorker from './serviceWorker';
 

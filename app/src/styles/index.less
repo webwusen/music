@@ -1,3 +1,5 @@
+@import url('./theme.less');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -32,9 +34,6 @@ ul {
 
 a {
   text-decoration: none;
-  color: #000000;
-  display: inline-block;
-  // padding: 1vw;
 }
 
 .fl {
@@ -72,7 +71,20 @@ a {
   /* Non-prefixed version, currently */
 }
 
-// 覆盖antd样式
+/* 主题换肤-start */
+// 默认官方红
+.theme-default {
+  .theme()
+}
+
+// 酷炫黑
+.theme-black {
+  .theme(#000, #fff)
+}
+
+/* 主题换肤-end */
+
+/* 覆盖antd样式-start */
 body .ant-input:hover {
   border-color: #C72E2E;
 }
@@ -91,3 +103,5 @@ body .ant-checkbox-checked .ant-checkbox-inner {
   background-color: #ea4848;
   border-color: #ea4848;
 }
+
+/* 覆盖antd样式-end */
