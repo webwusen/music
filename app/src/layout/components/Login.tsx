@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Icon, Button, message, Checkbox } from 'antd';
 import { MailOutlined, LockOutlined, InfoCircleOutlined } from '@ant-design/icons';
-import { login } from '@/api/layout';
+import { login, getUserDetail } from '@/api/layout';
 import styles from '@/layout/index.module.less';
 import loginBg from '@/assets/images/bg_login.png';
 import { localStorageSet } from '@/utils/localStorage';
@@ -52,6 +52,14 @@ const Login: React.FC<Props> = (props: Props) => {
     setRem(e.target.value)
   }
 
+  const getUerDetail = (id: number) => {
+    getUserDetail({
+      uid: id
+    }).then((res: any) => {
+      //localStorageSet('userDetail', res.account)
+    })
+  }
+
   // 登录
   const handleSubmit = () => {
     if (username === '') {
@@ -67,6 +75,7 @@ const Login: React.FC<Props> = (props: Props) => {
       email: username + '@163.com',
       password: password
     }).then((res: any) => {
+      getUerDetail(res.account.id);
       setLoad(false);
       message.success('登录成功')
       localStorageSet('userInfo', res.account)

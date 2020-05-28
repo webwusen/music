@@ -79,29 +79,34 @@ a {
 
 // 酷炫黑
 .theme-black {
-  .theme(#000, #fff)
+  .theme(
+    /*  */
+    @headerBackgroundColor: #212124,
+    @fontColor: #BDBDBE,
+    @headerBorderColor: #C62F2F,
+    @pageBtnBorderColor: #17171A,
+    @menuBackgroundColor: #191B1F,
+    @menuFontColor: #ADAFB2,
+    @fontCurrentColor: #DCDDE3,
+    @currentBorderColor: #B82525
+    /*  */
+  )
+}
+
+// 清新绿
+.theme-green {
+  .theme(
+    /*  */
+    @headerBackgroundColor: #3BBA7D,
+    @headerBorderColor: #3BBA7D,
+    @pageBtnBorderColor: #3B9869,
+    @currentBorderColor: #3BBA7D
+    /*  */
+  )
 }
 
 /* 主题换肤-end */
 
 /* 覆盖antd样式-start */
-body .ant-input:hover {
-  border-color: #C72E2E;
-}
-
-body .ant-input:focus {
-  border-color: #C72E2E;
-  -webkit-box-shadow: 0 0 0 2px rgba(199, 46, 46, 0.2);
-  box-shadow: 0 0 0 2px rgba(199, 46, 46, 0.2);
-}
-
-body .ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled) {
-  border-color: #C72E2E;
-}
-
-body .ant-checkbox-checked .ant-checkbox-inner {
-  background-color: #ea4848;
-  border-color: #ea4848;
-}
 
 /* 覆盖antd样式-end */

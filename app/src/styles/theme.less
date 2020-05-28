@@ -1,7 +1,90 @@
 // 换肤less文件,需要换肤的元素添加theme-element-前缀
-.theme(@backgroundcolor: #C62F2F, @fontcolor: #333) {
+.theme(
+  /* .header---start */
+  // 背景色
+  @headerBackgroundColor: #C62F2F,
+  // 文字
+  @fontColor: #fff,
+  // 下边框颜色
+  @headerBorderColor: #C62F2F,
+  // 前进后退按钮边框颜色
+  @pageBtnBorderColor: #A82828,
+  /* .header---end */
+  /* .menu---start */
+  // 背景色
+  @menuBackgroundColor: #F5F5F7,
+  // 文字
+  @menuFontColor: #5C5C5C,
+  // 文字hover跟选中颜色
+  @fontCurrentColor: #000,
+  // 选中菜单左侧边框颜色
+  @currentBorderColor: #B82525
+
+  /* .menu---end */
+) {
   .theme-element-header {
-    background-color: @backgroundcolor;
-    color: @fontcolor;
+    background-color: @headerBackgroundColor;
+    color: @fontColor;
+    border-color: @headerBorderColor;
+  }
+
+  .theme-element-logo-icon {
+    color: @headerBackgroundColor;
+  }
+
+  .theme-element-page-btn {
+    border-color: @pageBtnBorderColor;
+
+    span:first-child {
+      border-color: @pageBtnBorderColor;
+    }
+  }
+
+  .theme-element-search-bar {
+    .ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled) {
+      border-color: @pageBtnBorderColor;
+    }
+
+    .ant-input {
+      background-color: @pageBtnBorderColor;
+      border-color: @pageBtnBorderColor;
+
+      &::-webkit-input-placeholder {
+        color: rgba(255, 255, 255, .3);
+      }
+
+      &::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: rgba(255, 255, 255, .3);
+      }
+
+      &:-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: rgba(255, 255, 255, .3);
+      }
+
+      &:-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: rgba(255, 255, 255, .3);
+      }
+    }
+  }
+
+  .theme-element-menu {
+    background-color: @menuBackgroundColor;
+    color: @menuFontColor;
+
+    .menu-item-bar {
+      color: @menuFontColor;
+
+      &.active,
+      &:hover {
+        color: @fontCurrentColor;
+      }
+
+      &.active {
+        border-color: @currentBorderColor;
+      }
+    }
   }
 }

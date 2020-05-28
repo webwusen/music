@@ -58,19 +58,18 @@ const Header: React.FC<Props> = (props: Props) => {
         <span className={`iconfont iconpitchon`}></span>
       </div>
     </div>
-
   )
 
   return (
     <div className={`${styles['header']} theme-element-header clearfix`}>
       <Login show={show} showFunc={setShow} setInfoFunc={setInfo} />
       <div className={`${styles['logo']} fl`}>
-        <div className={`${styles['login-icon']}`}>
+        <div className={`${styles['login-icon']} theme-element-logo-icon`}>
           <span className="iconfont iconlogo"></span>
         </div>音乐台
       </div>
       <div className={`${styles['tools']} fl`}>
-        <div className={`${styles['page-btn']}`}>
+        <div className={`${styles['page-btn']} theme-element-page-btn`}>
           <span>
             <Icon type="left" />
           </span>
@@ -78,7 +77,7 @@ const Header: React.FC<Props> = (props: Props) => {
             <Icon type="right" />
           </span>
         </div>
-        <div className={`${styles['search-bar']}`}>
+        <div className={`${styles['search-bar']} theme-element-search-bar`}>
           <Search
             placeholder="搜索音乐，视频，歌词，电台"
             onSearch={value => console.log(value)}
@@ -102,9 +101,6 @@ const Header: React.FC<Props> = (props: Props) => {
           <Popover placement="bottom" content={<div>111</div>} trigger="click">
             <span className="iconfont iconyouxiang"></span>
           </Popover>
-        </div>
-        <div className={`${styles['settings']}`}>
-          <span className="iconfont iconsetting"></span>
         </div>
       </div>
     </div >

@@ -37,7 +37,7 @@ const menuList: Array<MenuItem> = [
         icon: 'iconvideo'
       }
     ]
-  },
+  }/* ,
   {
     title: '我的音乐',
     children: [
@@ -58,7 +58,7 @@ const menuList: Array<MenuItem> = [
   {
     title: '创建的歌单',
     children: []
-  }
+  } */
 ];
 
 const Leftmenu: React.FC = (props: any) => {
@@ -71,7 +71,7 @@ const Leftmenu: React.FC = (props: any) => {
       <div className={`${styles['title']}`}>{item.title}</div>
       {
         item.children.map(ele => (
-          <Link key={ele.id} to={ele.path} className={active === ele.id ? `${styles['active']}` : ''} onClick={() => setActive(ele.id)}>
+          <Link key={ele.id} to={ele.path} className={`${active === ele.id ? 'active' : ''} menu-item-bar`} onClick={() => setActive(ele.id)}>
             <span className={`iconfont ${ele.icon}`}></span><span>{ele.title}</span>
           </Link>
         ))
@@ -80,7 +80,7 @@ const Leftmenu: React.FC = (props: any) => {
   ));
 
   return (
-    <div className={`${styles['menu']}`}>
+    <div className={`${styles['menu']} theme-element-menu`}>
       <div className={`${styles['menu-list']}`}>{ListItems}</div>
     </div >
   );
