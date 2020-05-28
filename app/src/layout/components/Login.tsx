@@ -4,6 +4,7 @@ import { MailOutlined, LockOutlined, InfoCircleOutlined } from '@ant-design/icon
 import { login } from '@/api/layout';
 import styles from '@/layout/index.module.less';
 import loginBg from '@/assets/images/bg_login.png';
+import { localStorageSet } from '@/utils/localStorage';
 
 interface ShowFunc {
   (show: boolean): void;
@@ -31,22 +32,27 @@ const Login: React.FC<Props> = (props: Props) => {
   const [remember, setRem] = useState(false);
   const [tipsMsg, setTip] = useState('');
 
+  // 登录页面显示隐藏
   const handlerShow = () => {
     props.showFunc(!props.show);
   }
 
+  // 用户名数据双向绑定
   const usernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUname(e.target.value)
   }
 
+  // 密码数据双向绑定
   const passwordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPass(e.target.value)
   }
 
+  // 记住密码
   const onRememberChange = (e: any) => {
     setRem(e.target.value)
   }
 
+  // 登录
   const handleSubmit = () => {
     if (username === '') {
       setTip('请输入用户名')
@@ -63,7 +69,8 @@ const Login: React.FC<Props> = (props: Props) => {
     }).then((res: any) => {
       setLoad(false);
       message.success('登录成功')
-      localStorage.setItem('userInfo', JSON.stringify(res.account));
+      localStorageSet('userInfo', res.account)
+      localStorageSet('token', res.token)
       props.setInfoFunc(res.account)
       handlerShow()
     }).catch((err: any) => {
@@ -89,7 +96,7 @@ const Login: React.FC<Props> = (props: Props) => {
           </div>
           <div className={`${styles['login-form-item']}`}>
             <LockOutlined />
-            <input className={`${styles['password']}`} onChange={passwordChange} placeholder="密码" />
+            <input className={`${styles['password']}`} onChange={passwordChange} placeholder="密码" type="password" />
           </div>
         </div>
         <div className={`${styles['remember-item']}`}>

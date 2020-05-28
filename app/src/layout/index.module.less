@@ -116,31 +116,42 @@
     align-items: center;
     height: 100%;
     color: #eec1c1;
-  }
 
-  .user-box {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+    .user-box {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
 
-    &:hover {
-      color: #fff;
+      &:hover {
+        color: #fff;
+      }
+
+      .user {
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        margin-right: 6px;
+        text-align: center;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: #e1e3e4;
+        color: #fff;
+      }
+
+      .username {
+        margin-right: 10px;
+      }
     }
 
-    .user {
-      width: 24px;
-      height: 24px;
-      line-height: 24px;
-      margin-right: 6px;
-      text-align: center;
-      border-radius: 50%;
-      overflow: hidden;
-      background-color: #e1e3e4;
-      color: #fff;
-    }
+    .skin,
+    .message,
+    .settings {
+      margin-left: 20px;
+      cursor: pointer;
 
-    .username {
-      margin-right: 10px;
+      :global(.iconfont) {
+        font-size: 20px;
+      }
     }
   }
 }
@@ -318,4 +329,85 @@
     }
   }
 
+}
+
+.skin-box {
+  display: flex;
+  justify-content: space-between;
+  width: 320px;
+
+  .skin-item-box {
+    width: 94px;
+    height: 94px;
+    border: 1px solid transparent;
+    padding: 1px;
+
+    &.red {
+      &:hover {
+        border-color: #C62F2F;
+      }
+
+      .skin-item {
+        background-color: #C62F2F;
+      }
+    }
+
+    &.black {
+      &:hover {
+        border-color: #292C32;
+      }
+
+      .skin-item {
+        background-color: #292C32;
+      }
+    }
+
+    &.green {
+      &:hover {
+        border-color: #419C5E;
+      }
+
+      .skin-item {
+        background-color: #419C5E;
+      }
+    }
+  }
+
+  .skin-item {
+    position: relative;
+    height: 100%;
+
+    p {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 20px;
+      line-height: 20px;
+      color: #fff;
+      margin: 0;
+      padding: 0 5px;
+      background-color: rgba(0, 0, 0, .1);
+    }
+
+    &.show {
+      :global(.iconfont) {
+        display: flex;
+      }
+    }
+
+    :global(.iconfont) {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      height: 16px;
+      z-index: 1;
+      display: none;
+      width: 18px;
+      align-items: center;
+      justify-content: center;
+      color: #B82525;
+      border: 10px solid #fff;
+      border-radius: 50%;
+    }
+  }
 }

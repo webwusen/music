@@ -28,13 +28,32 @@ const menuList: Array<MenuItem> = [
         title: '私人FM',
         path: '/fm',
         id: '/fm',
-        icon: 'iconFM'
+        icon: 'iconfm'
+      },
+      {
+        title: '视频',
+        path: '',
+        id: '/video',
+        icon: 'iconvideo'
       }
     ]
   },
   {
     title: '我的音乐',
-    children: []
+    children: [
+      {
+        title: '本地音乐',
+        path: '',
+        id: '/localMusic',
+        icon: 'iconyinle'
+      },
+      {
+        title: '下载管理',
+        path: '',
+        id: '/download',
+        icon: 'iconxiazai'
+      }
+    ]
   },
   {
     title: '创建的歌单',

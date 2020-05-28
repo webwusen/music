@@ -6,6 +6,69 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "6284056",
+      "name": "对勾 填充-01",
+      "font_class": "pitchon",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
+      "icon_id": "755560",
+      "name": "视频",
+      "font_class": "video",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "4198406",
+      "name": "音乐",
+      "font_class": "yinle",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "853013",
+      "name": "心",
+      "font_class": "favorite",
+      "unicode": "e6b3",
+      "unicode_decimal": 59059
+    },
+    {
+      "icon_id": "1106434",
+      "name": "设置",
+      "font_class": "setting",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "4867111",
+      "name": "邮箱",
+      "font_class": "youxiang",
+      "unicode": "e65e",
+      "unicode_decimal": 58974
+    },
+    {
+      "icon_id": "11800270",
+      "name": "直播",
+      "font_class": "zhibo",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "14055590",
+      "name": "下载",
+      "font_class": "xiazai",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "6129325",
+      "name": "279皮肤、个性化、主题-线性",
+      "font_class": "theme",
+      "unicode": "e7e8",
+      "unicode_decimal": 59368
+    },
+    {
       "icon_id": "11523",
       "name": "音符",
       "font_class": "yinfu",
@@ -15,14 +78,14 @@
     {
       "icon_id": "7913014",
       "name": "FM2",
-      "font_class": "FM",
+      "font_class": "fm",
       "unicode": "e62b",
       "unicode_decimal": 58923
     },
     {
       "icon_id": "8033071",
       "name": "网易云音乐",
-      "font_class": "wangyiyunyinle",
+      "font_class": "logo",
       "unicode": "ea4b",
       "unicode_decimal": 59979
     }
