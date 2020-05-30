@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import styles from '@/layout/index.module.less';
 
@@ -63,8 +63,12 @@ const menuList: Array<MenuItem> = [
 
 const Leftmenu: React.FC = (props: any) => {
 
-  const pathname: string = props.location.pathname.split('/')[1];
-  const [active, setActive] = useState(`/${pathname}`);
+  const [active, setActive] = useState('');
+
+  useEffect(() => {
+    const pathname: string = props.location.pathname.split('/')[1] || 'discover';
+    setActive(`/${pathname}`)
+  }, [props.location.pathname]);
 
   const ListItems = menuList.map((item, index) => (
     <div className={`${styles['menu-item']}`} key={index}>

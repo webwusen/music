@@ -30,6 +30,5 @@ module.exports = override(
       }
     });
     return config;
-  },
-
+  }
 );

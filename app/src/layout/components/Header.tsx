@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Avatar, Icon, Input, Popover } from 'antd';
 import Login from './Login';
 import styles from '../index.module.less';
-import { localStorageGet } from '@/utils/localStorage';
+import { localStorageSet, localStorageGet } from '@/utils/localStorage';
 
 const { Search } = Input;
 
@@ -47,7 +47,9 @@ const Header: React.FC<Props> = (props: Props) => {
 
   // 通知父组件换肤
   const changeTheme = (id: string) => {
-    props.themeFunc(id)
+    props.themeFunc(id);
+    // 存储用户选择的主题
+    localStorageSet('bgTheme', id);
   }
 
   // 换肤dom

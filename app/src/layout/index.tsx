@@ -4,9 +4,12 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Content from './components/Content';
 import styles from './index.module.less';
+import { localStorageGet } from '@/utils/localStorage';
 
 const Layout: React.FC = () => {
-  const [theme, setTheme] = useState('theme-default');
+  // 获取上次用户选择的主题
+  const userTheme = localStorageGet('bgTheme') || 'theme-default';
+  const [theme, setTheme] = useState(userTheme);
 
   return (
     <div className={`${styles['container']} ${theme}`}>
