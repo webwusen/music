@@ -6,6 +6,34 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1447738",
+      "name": "播放",
+      "font_class": "play",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "9083753",
+      "name": "上一首",
+      "font_class": "next",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "10143249",
+      "name": "暂停",
+      "font_class": "pause",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "11168062",
+      "name": "上一首",
+      "font_class": "prev",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
       "icon_id": "6284056",
       "name": "对勾 填充-01",
       "font_class": "pitchon",

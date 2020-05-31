@@ -150,9 +150,45 @@
 }
 
 .footer {
+  display: flex;
+  align-items: center;
   height: 48px;
+  padding-left: 30px;
+  padding-right: 20px;
   border-top: 1px solid #E1E1E2;
   background-color: #f6f6f8;
+}
+
+.play-btn {
+  display: flex;
+  align-items: center;
+
+  &>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid;
+    margin-right: 24px;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  :global(.iconfont) {
+    font-size: 12px;
+  }
+
+  .play-pause {
+    width: 34px;
+    height: 34px;
+    padding-left: 2px;
+  }
+}
+
+.play-box {
+  flex: 1;
 }
 
 .menu {

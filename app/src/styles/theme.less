@@ -18,9 +18,23 @@
   // 文字hover跟选中颜色
   @fontCurrentColor: #000,
   // 选中菜单左侧边框颜色
-  @currentBorderColor: #B82525
-
+  @currentBorderColor: #B82525,
+  // 菜单右侧边框颜色
+  @menuBorderColor: #E1E1E2,
   /* .menu---end */
+
+  /* footer---start */
+  // 底部北京颜色
+  @footerBackground: #F6F6F8,
+  // 底部上边框颜色
+  @footerBorderColor: #E1E1E2,
+  @palyBtnBorderColor: #C62F2F,
+  /* footer---end‘ */
+
+  /* content---start */
+  // 中间部分背景颜色
+  @contentBackground: #FAFAFA,
+  /* content---start */
 ) {
   .theme-element-header {
     background-color: @headerBackgroundColor;
@@ -73,6 +87,7 @@
   .theme-element-menu {
     background-color: @menuBackgroundColor;
     color: @menuFontColor;
+    border-color: @menuBorderColor;
 
     .menu-item-bar {
       color: @menuFontColor;
@@ -85,6 +100,22 @@
       &.active {
         border-color: @currentBorderColor;
       }
+    }
+  }
+
+  .theme-element-footer {
+    background-color: @footerBackground;
+    border-color: @footerBorderColor;
+  }
+
+  .theme-element-content {
+    background-color: @contentBackground;
+  }
+
+  .theme-element-paly-btn {
+    &>div {
+      background-color: @headerBackgroundColor;
+      border-color: @palyBtnBorderColor;
     }
   }
 }

@@ -7,7 +7,7 @@ import styles from '@/layout/index.module.less';
 
 const Content: React.FC = (props) => {
   return (
-    <div className={`${styles['content']}`}>
+    <div className={`${styles['content']} theme-element-content`}>
       <Leftmenu />
       <div className={`${styles['view']}`}>
         {props.children}
