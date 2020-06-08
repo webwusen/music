@@ -1,12 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './index.module.less';
-import { getPersonalFm } from '@/api/layout';
+import { getPersonalFm, getSongDetail } from '@/api/layout';
 
 const Fm: React.FC = () => {
 
+  const [fmList, setFmlist] = useState([]);
+
   useEffect(() => {
     getPersonalFm().then((res: any) => {
-      console.log(res)
+      const list = res.data.map(async (item: any) => {
+        const songDetail = await getSongDetail({
+          ids: item.id
+        })
+        return {
+          ...item,
+          songUrl: songDetail.data
+        }
+      });
+      setFmlist(list)
     }).catch()
   }, [])
 

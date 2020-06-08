@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Icon, Button, message, Checkbox } from 'antd';
 import { MailOutlined, LockOutlined, InfoCircleOutlined } from '@ant-design/icons';
-import { login, getUserDetail } from '@/api/layout';
+import { login, getUserDetail, getUserSubcount } from '@/api/layout';
 import styles from '@/layout/index.module.less';
 import loginBg from '@/assets/images/bg_login.png';
 import { localStorageSet } from '@/utils/localStorage';
@@ -61,7 +61,7 @@ const Login: React.FC<Props> = (props: Props) => {
   }
 
   // 登录
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (username === '') {
       setTip('请输入用户名')
       return
@@ -71,20 +71,25 @@ const Login: React.FC<Props> = (props: Props) => {
       return
     }
     setLoad(true);
-    login({
-      email: username + '@163.com',
-      password: password
-    }).then((res: any) => {
-      getUerDetail(res.account.id);
+    try {
+      const loginInfo = await login({
+        email: username + '@163.com',
+        password: password
+      });
       setLoad(false);
       message.success('登录成功')
-      localStorageSet('userInfo', res.account)
-      localStorageSet('token', res.token)
-      props.setInfoFunc(res.account)
+      localStorageSet('userInfo', loginInfo.account)
+      localStorageSet('token', loginInfo.token)
+      localStorageSet('cookie', loginInfo.cookie)
+      props.setInfoFunc(loginInfo.account)
+      // const userDetail = await getUerDetail(loginInfo.account.id);
+      const userSubcount = await getUserSubcount();
+      localStorageSet('userSubcount', userSubcount)
+      console.log(userSubcount)
       handlerShow()
-    }).catch((err: any) => {
+    } catch (e) {
       setLoad(false);
-    });
+    }
   }
 
   return (
@@ -114,7 +119,7 @@ const Login: React.FC<Props> = (props: Props) => {
         </div>
         <Button type="primary" htmlType="submit" loading={loading} className={`${styles['login-form-button']}`} onClick={handleSubmit}>
           登录
-      </Button>
+        </Button>
       </div>
     </div >
   );
