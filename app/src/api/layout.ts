@@ -51,3 +51,23 @@ export function getSongDetail(params: songDetail): any {
     params
   })
 }
+interface songUrl {
+  id: string;
+}
+// 获取歌曲url
+export function getSongUrl(params: songUrl): any {
+  return request({
+    method: 'get',
+    url: '/song/url',
+    params
+  })
+}
+
+// 获取歌曲专辑内容
+export function getSongAlbum(params: songUrl): any {
+  return request({
+    method: 'get',
+    url: '/album',
+    params
+  })
+}

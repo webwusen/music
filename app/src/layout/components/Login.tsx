@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Icon, Button, message, Checkbox } from 'antd';
 import { MailOutlined, LockOutlined, InfoCircleOutlined } from '@ant-design/icons';
-import { login, getUserDetail, getUserSubcount } from '@/api/layout';
+import { login, getUserSubcount } from '@/api/layout';
 import styles from '@/layout/index.module.less';
 import loginBg from '@/assets/images/bg_login.png';
 import { localStorageSet } from '@/utils/localStorage';
@@ -50,14 +50,6 @@ const Login: React.FC<Props> = (props: Props) => {
   // 记住密码
   const onRememberChange = (e: any) => {
     setRem(e.target.value)
-  }
-
-  const getUerDetail = (id: number) => {
-    getUserDetail({
-      uid: id
-    }).then((res: any) => {
-      //localStorageSet('userDetail', res.account)
-    })
   }
 
   // 登录
