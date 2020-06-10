@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Icon, Button, message, Checkbox } from 'antd';
 import { MailOutlined, LockOutlined, InfoCircleOutlined } from '@ant-design/icons';
-import { login, getUserSubcount } from '@/api/layout';
+import { login, getUserSubcount, getUserDetail } from '@/api/layout';
 import styles from '@/layout/index.module.less';
 import loginBg from '@/assets/images/bg_login.png';
 import { localStorageSet } from '@/utils/localStorage';
@@ -74,11 +74,13 @@ const Login: React.FC<Props> = (props: Props) => {
       localStorageSet('token', loginInfo.token)
       localStorageSet('cookie', loginInfo.cookie)
       props.setInfoFunc(loginInfo.account)
-      // const userDetail = await getUerDetail(loginInfo.account.id);
-      const userSubcount = await getUserSubcount();
-      localStorageSet('userSubcount', userSubcount)
-      console.log(userSubcount)
       handlerShow()
+      await getUserDetail({ uid: loginInfo.account.id }).then((res: any) => {
+        localStorageSet('userDetail', res)
+      });
+      await getUserSubcount().then((res: any) => {
+        localStorageSet('userSubcount', res)
+      });
     } catch (e) {
       setLoad(false);
     }

@@ -31,11 +31,13 @@
   }
 
   .song-info {
+    display: flex;
+    justify-content: space-between;
     font-size: 12px;
   }
 
   .song-info-box {
-    width: 110px;
+    max-width: 110px;
     display: inline-block;
     white-space: nowrap;
     overflow: hidden;
@@ -75,5 +77,15 @@
     overflow: hidden;
     overflow-y: scroll;
     margin-top: 27px;
+    border-right: 1px solid #E4E4E6;
+  }
+
+  .no-lyric {
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .words {
+    margin-bottom: 20px;
   }
 }

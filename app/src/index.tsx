@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import * as serviceWorker from './serviceWorker';
 import './styles/var.less';
 import './font/iconfont.css';
-import './styles/index.less';
 import App from './app';
-import * as serviceWorker from './serviceWorker';
+import './styles/index.less';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

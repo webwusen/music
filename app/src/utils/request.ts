@@ -18,11 +18,11 @@ request.interceptors.response.use((response: any) => {
     return res;
   } else {
     message.error(res.msg)
-    return Promise.reject(new Error(res.msg || 'Error'))
+    return Promise.reject(res.msg || res)
   }
 },
   (error: any) => {
-    message.error(error.msg || error)
+    message.error(error.toString())
     return Promise.reject(error.msg || error);
   },
 )

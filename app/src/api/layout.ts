@@ -51,11 +51,11 @@ export function getSongDetail(params: songDetail): any {
     params
   })
 }
-interface songUrl {
+interface songId {
   id: string;
 }
 // 获取歌曲url
-export function getSongUrl(params: songUrl): any {
+export function getSongUrl(params: songId): any {
   return request({
     method: 'get',
     url: '/song/url',
@@ -64,10 +64,18 @@ export function getSongUrl(params: songUrl): any {
 }
 
 // 获取歌曲专辑内容
-export function getSongAlbum(params: songUrl): any {
+export function getSongAlbum(params: songId): any {
   return request({
     method: 'get',
     url: '/album',
+    params
+  })
+}
+// 获取歌词
+export function getSongLyric(params: songId): any {
+  return request({
+    method: 'get',
+    url: '/lyric',
     params
   })
 }
