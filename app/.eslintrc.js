@@ -4,7 +4,7 @@ module.exports = {
     "commonjs": true,
     "es6": true
   },
-  "extends": "eslint:recommended",
+  "extends": ["eslint:recommended", "plugin:react-hooks/recommended"],
   "globals": {
     "$": true,
     "process": true,
@@ -24,7 +24,8 @@ module.exports = {
   },
   "plugins": [
     "react",
-    "typescript"
+    "typescript",
+    "react-hooks"
   ],
   "rules": {
     "quotes": [2, "single"],
@@ -94,6 +95,8 @@ module.exports = {
     "react/no-array-index-key": 0,
     "react/no-deprecated": 1,
     "react/jsx-equals-spacing": 2,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
     "no-unreachable": 1,
     "comma-dangle": 2,
     "no-mixed-spaces-and-tabs": 0,

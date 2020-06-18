@@ -41,8 +41,21 @@ const Fm: React.FC = () => {
       setFmlist(list);
       const data: any = [list[0]];
       setCurFm(data);
-    }).catch()
-  }, [])
+    })
+  }, []);
+
+  // 格式化歌词
+  const formatLyric = (lyric: string) => {
+    const lyricList = lyric.split('\n');
+    const arr = lyricList.map((item: string) => {
+      const ly = item.split(']');
+      return {
+        time: ly[0],
+        words: ly[1]
+      }
+    })
+    return arr;
+  }
 
   // 获取歌曲url、歌曲歌词
   const getSong = async (data: any[]) => {
@@ -51,27 +64,15 @@ const Fm: React.FC = () => {
       const item = data[i];
       // 获取原歌词
       const lyric = await getSongLyric({ id: item.id });
-      const lyc = lyric.lrc && lyric.lrc.lyric ? lyric.lrc.lyric.split('\n') : [];
+      const lyc = lyric.lrc && lyric.lrc.lyric ? formatLyric(lyric.lrc.lyric) : [];
       // 获取翻译歌词
-      const tlyc = lyric.tlyric && lyric.tlyric.lyric ? lyric.tlyric.lyric.split('\n') : [];
+      const tlyc = lyric.tlyric && lyric.tlyric.lyric ? formatLyric(lyric.tlyric.lyric) : [];
       const songUrl = await getSongUrl({ id: item.id });
       list.push({
         ...item,
         songUrl: songUrl.data[0].url,
-        lyric: lyc.map((item: string) => {
-          const ly = item.split(']');
-          return {
-            time: ly[0].substr(1),
-            words: ly[1]
-          }
-        }),
-        tlyric: tlyc.map((item: string) => {
-          const ly = item.split(']');
-          return {
-            time: ly[0].substr(1),
-            words: ly[1]
-          }
-        })
+        lyric: lyc,
+        tlyric: tlyc
       })
     }
     return list;
@@ -116,7 +117,6 @@ const Fm: React.FC = () => {
                 :
                 <p className={`${styles['no-lyric']}`}>暂无歌词</p>
             }
-
           </div>
         </div>
       </div>
