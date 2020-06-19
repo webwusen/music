@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './index.module.less';
-import { getPersonalFm, getSongUrl, getSongLyric } from '@/api/layout';
+import { getPersonalFm } from '@/api/layout';
+import getSongDetails from '@/utils/getSongDetail';
 
 const Fm: React.FC = () => {
 
@@ -44,35 +45,16 @@ const Fm: React.FC = () => {
     })
   }, []);
 
-  // 格式化歌词
-  const formatLyric = (lyric: string) => {
-    const lyricList = lyric.split('\n');
-    const arr = lyricList.map((item: string) => {
-      const ly = item.split(']');
-      return {
-        time: ly[0],
-        words: ly[1]
-      }
-    })
-    return arr;
-  }
-
   // 获取歌曲url、歌曲歌词
   const getSong = async (data: any[]) => {
     const list: any = [];
     for (let i = 0; i < data.length; i++) {
       const item = data[i];
-      // 获取原歌词
-      const lyric = await getSongLyric({ id: item.id });
-      const lyc = lyric.lrc && lyric.lrc.lyric ? formatLyric(lyric.lrc.lyric) : [];
-      // 获取翻译歌词
-      const tlyc = lyric.tlyric && lyric.tlyric.lyric ? formatLyric(lyric.tlyric.lyric) : [];
-      const songUrl = await getSongUrl({ id: item.id });
+      let songDetail = {};
+      await getSongDetails(item.id).then(res => { songDetail = res });
       list.push({
         ...item,
-        songUrl: songUrl.data[0].url,
-        lyric: lyc,
-        tlyric: tlyc
+        ...songDetail
       })
     }
     return list;
