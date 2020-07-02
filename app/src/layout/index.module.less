@@ -157,6 +157,7 @@
   padding-right: 20px;
   border-top: 1px solid #E1E1E2;
   background-color: #f6f6f8;
+  user-select: none;
 }
 
 .play-btn {
@@ -189,6 +190,87 @@
 
 .play-box {
   flex: 1;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.play-bar {
+  position: relative;
+  flex: 1;
+  height: 4px;
+  background-color: #C2C2C4;
+  margin: 0 10px;
+  border-radius: 2px;
+}
+
+.play-bar-in {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  width: 0;
+  border-radius: 2px;
+  background-color: #E83C3C;
+  z-index: 1;
+}
+
+.play-bar-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -6.5px;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #C6C6C6;
+    border-radius: 50%;
+    z-index: 1;
+    background-color: #fff;
+    cursor: pointer;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -1.5px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    z-index: 2;
+    background-color: #E83C3C;
+    cursor: pointer;
+  }
+}
+
+.play-tools {
+  display: flex;
+  align-items: center;
+  margin-left: 14px;
+}
+
+.play-volume {
+  position: relative;
+  width: 100px;
+  height: 4px;
+  background-color: #E6E6E8;
+  border-radius: 2px;
+  margin-left: 12px;
+
+  .play-bar-btn {
+    &::before {
+      top: -4px;
+      left: -5.5px;
+      width: 12px;
+      height: 12px;
+    }
+  }
 }
 
 .menu {

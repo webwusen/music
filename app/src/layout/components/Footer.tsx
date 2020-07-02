@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '@/layout/index.module.less';
+import { SoundFilled } from '@ant-design/icons';
 
 const Footer: React.FC = () => (
   <div className={`${styles['footer']} theme-element-footer`}>
@@ -15,8 +16,21 @@ const Footer: React.FC = () => (
         <span className={`iconfont iconnext`}></span>
       </div>
     </div>
-    <div className={`${styles['play-box']}`}></div>
-    <div className={`${styles['paly-tools']}`}></div>
+    <div className={`${styles['play-box']}`}>
+      <span>00:00</span>
+      <div className={`${styles['play-bar']}`}>
+        <div className={`${styles['play-bar-in']}`}></div>
+        <div className={`${styles['play-bar-btn']}`}></div>
+      </div>
+      <span>00:00</span>
+    </div>
+    <div className={`${styles['play-tools']}`}>
+      <SoundFilled />
+      <div className={`${styles['play-volume']}`}>
+        <div className={`${styles['play-bar-in']}`}></div>
+        <div className={`${styles['play-bar-btn']}`}></div>
+      </div>
+    </div>
   </div>
 );
 
