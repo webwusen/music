@@ -2,20 +2,28 @@ import React, { useState, useEffect } from 'react';
 import styles from './index.module.less';
 import { getPersonalFm } from '@/api/layout';
 import getSongDetails from '@/utils/getSongDetail';
+import { SongInfo } from '@/types/song';
+import { connect } from 'react-redux';
+import { setSongInfo } from '@/store/actions/index';
 
-const Fm: React.FC = () => {
+const Fm: React.FC = ({ changeSong }: any) => {
 
-  const fmValue = [
+  const fmValue: SongInfo[] = [
     {
-      name: '',
-      artists: [
-        {
-          name: ''
-        }
-      ],
-      album: {
+      songInfo: {
         name: '',
-        picUrl: ''
+        artists: [
+          {
+            name: ''
+          }
+        ],
+        album: {
+          name: '',
+          picUrl: ''
+        },
+      },
+      songDetailInfo: {
+        url: ''
       },
       lyric: [
         {
@@ -31,31 +39,33 @@ const Fm: React.FC = () => {
       ]
     }
   ];
-  const [fmList, setFmlist] = useState([]);
-  const [curFm, setCurFm] = useState(fmValue);
+  const [fmList, setFmlist] = useState<SongInfo[]>([]);
+  const [curFm, setCurFm] = useState<SongInfo[]>(fmValue);
 
   useEffect(() => {
     // 获取fm
     getPersonalFm().then(async (res: any) => {
-      let list: any;
+      let list: SongInfo[] = [];
       await getSong(res.data).then(song => { list = song });
       setFmlist(list);
-      const data: any = [list[0]];
+      let data: SongInfo[] = [];
+      if (list.length > 0) {
+        data = [list[0]];
+      }
       setCurFm(data);
     })
   }, []);
 
+  useEffect(() => {
+    changeSong(curFm[0]);
+  }, [curFm, changeSong])
+
   // 获取歌曲url、歌曲歌词
   const getSong = async (data: any[]) => {
-    const list: any = [];
+    const list: SongInfo[] = [];
     for (let i = 0; i < data.length; i++) {
       const item = data[i];
-      let songDetail = {};
-      await getSongDetails(item.id).then(res => { songDetail = res });
-      list.push({
-        ...item,
-        ...songDetail
-      })
+      await getSongDetails(item.id).then(res => { list.push({ ...res, songInfo: item }) });
     }
     return list;
   }
@@ -67,19 +77,19 @@ const Fm: React.FC = () => {
           <div className={`${styles['music-box']}`}>
             <div className={`${styles['prev-music']}`}></div>
             <div className={`${styles['cur-music']}`}>
-              <img className={`${styles['music-pic']}`} alt="" src={curFm[0].album.picUrl + '?params=270y270'} />
+              <img className={`${styles['music-pic']}`} alt="" src={curFm[0].songInfo.album.picUrl + '?params=270y270'} />
             </div>
             <div className={`${styles['next-music']}`}></div>
           </div>
         </div>
         <div className={`${styles['song-right']}`}>
-          <div className={`${styles['song-title']}`}>{curFm[0].name}</div>
+          <div className={`${styles['song-title']}`}>{curFm[0].songInfo.name}</div>
           <div className={`${styles['song-info']}`}>
             <div>
-              专辑：<span className={`${styles['song-info-box']}`} title={curFm[0].album.name}>{curFm[0].album.name}</span>
+              专辑：<span className={`${styles['song-info-box']}`} title={curFm[0].songInfo.album.name}>{curFm[0].songInfo.album.name}</span>
             </div>
             <div>
-              歌手：<span className={`${styles['song-info-box']}`} title={curFm[0].artists[0].name}>{curFm[0].artists[0].name}</span>
+              歌手：<span className={`${styles['song-info-box']}`} title={curFm[0].songInfo.artists[0].name}>{curFm[0].songInfo.artists[0].name}</span>
             </div>
           </div>
           <div className={`${styles['song-words']}`}>
@@ -106,4 +116,16 @@ const Fm: React.FC = () => {
   )
 }
 
-export default Fm;
+const mapStateToProps = (state: SongInfo) => {
+  return { songDetail: state.songInfo }
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    changeSong: (data: SongInfo) => {
+      dispatch(setSongInfo(data))
+    }
+  }
+}
+const songFm = connect(mapStateToProps, mapDispatchToProps)(Fm);
+export default songFm;
