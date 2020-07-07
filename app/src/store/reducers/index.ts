@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
-import changeSong from './changeSong';
+import { changeSong, changeSongPlayStatus } from './changeSong';
 
 const reducers = combineReducers({
-  songInfo: changeSong
+  songInfo: changeSong,
+  songPlayStatus: changeSongPlayStatus
 });
 
 export default reducers;

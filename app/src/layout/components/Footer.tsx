@@ -1,25 +1,73 @@
 import React, { useState, useEffect } from 'react';
 import styles from '@/layout/index.module.less';
-import { SongInfo } from '@/types/song';
+import { SongInfo, SongPlayStatusType } from '@/types/song';
 import { SoundFilled } from '@ant-design/icons';
 import { connect } from 'react-redux';
-import { setSongInfo } from '@/store/actions/index';
-import { formatDuring } from '@/utils/formatDate';
+import { setSongPlayStatus } from '@/store/actions/index';
+import { formatSongDuration, durationTostring } from '@/utils';
+import store from '@/store/index';
 
-const Footer: React.FC = ({ songDetail, dispatch }: any) => {
+const Footer: React.FC = ({ songDetail, songPlayStatus, changeSongPlayStatus }: any) => {
   console.log(songDetail);
   const [song, setSong] = useState<SongInfo>(songDetail);
   const [currentTime, setCurTime] = useState<string>('00:00');
   const [fullTime, setFullTime] = useState<string>('00:00');
+  const [isPlay, setIsPlay] = useState<boolean>(false);
   const audio: any = document.getElementById('music');
+
+  useEffect(() => {
+    const unsubscribe = store.subscribe(() => {
+      const songPlayStatus = store.getState().songPlayStatus;
+      setTimeout(() => {
+        if (audio) {
+          try {
+            setIsPlay(false);
+            audio.pause()
+            if (songPlayStatus.status === 'play') {
+              setIsPlay(true);
+              audio.play()
+              // 设置音量
+              audio.volume = songPlayStatus.volume
+            }
+          } catch (e) {
+            console.log(e);
+          }
+
+        }
+      }, 0);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [audio])
 
   useEffect(() => {
     if (songDetail.songDetailInfo.url !== '' && songDetail.songDetailInfo.url !== song.songDetailInfo.url) {
       setSong(songDetail);
-      setFullTime(formatDuring(songDetail.songInfo.duration));
-      // audio.play()
+      const ct = '00:00';
+      const ft = formatSongDuration(songDetail.songInfo.duration);
+      const fts = durationTostring(ft);
+      changeSongPlayStatus({
+        status: 'play',
+        fullTime: ft,
+        currentTime: 0,
+        fullTimeShow: fts,
+        currentTimeShow: ct,
+        volume: songPlayStatus.volume
+      });
+      setCurTime(ct);
+      setFullTime(fts);
     }
-  }, [songDetail, song.songDetailInfo.url])
+  }, [songDetail, changeSongPlayStatus, song, songPlayStatus]);
+
+  const handlerSongPlay = () => {
+    const status: string = songPlayStatus.status === 'play' ? 'pause' : 'play';
+    changeSongPlayStatus({
+      ...songPlayStatus,
+      status
+    })
+  };
 
   return (
     <div className={`${styles['footer']} theme-element-footer`}>
@@ -27,9 +75,11 @@ const Footer: React.FC = ({ songDetail, dispatch }: any) => {
         <div className={`${styles['play-prev']}`}>
           <span className={`iconfont iconprev`}></span>
         </div>
-        <div className={`${styles['play-pause']}`}>
-          <span className={`iconfont iconplay`}></span>
-          <span hidden className={`iconfont iconpause`}></span>
+        <div className={`${styles['play-pause']}`} onClick={handlerSongPlay}>
+          {
+            isPlay ? <span className={`iconfont iconpause`}></span> :
+              <span className={`iconfont iconplay`}></span>
+          }
         </div>
         <div className={`${styles['play-next']}`}>
           <span className={`iconfont iconnext`}></span>
@@ -55,14 +105,14 @@ const Footer: React.FC = ({ songDetail, dispatch }: any) => {
   )
 };
 
-const mapStateToProps = (state: SongInfo) => {
-  return { songDetail: state.songInfo }
+const mapStateToProps = (state: any) => {
+  return { songDetail: state.songInfo, songPlayStatus: state.songPlayStatus }
 };
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    changeSong: (data: SongInfo) => {
-      dispatch(setSongInfo(data))
+    changeSongPlayStatus: (data: SongPlayStatusType) => {
+      dispatch(setSongPlayStatus(data))
     }
   }
 }

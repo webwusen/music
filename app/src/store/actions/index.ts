@@ -1,4 +1,4 @@
-import { SongInfo } from '@/types/song';
+import { SongInfo, SongPlayStatusType } from '@/types/song';
 
 export interface SetSongInfoType {
   type: string;
@@ -11,3 +11,15 @@ export const setSongInfo = (state: SongInfo): SetSongInfoType => {
     state
   };
 };
+
+export interface setSongPlayStatusType {
+  type: string;
+  state: SongPlayStatusType;
+}
+
+export const setSongPlayStatus = (state: SongPlayStatusType): setSongPlayStatusType => {
+  return {
+    type: 'SET_SONG_PLAY_STATUS',
+    state
+  }
+}
