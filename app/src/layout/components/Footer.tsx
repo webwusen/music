@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from '@/layout/index.module.less';
 import { SongInfo, SongPlayStatusType } from '@/types/song';
 import { SoundFilled } from '@ant-design/icons';
@@ -8,58 +8,73 @@ import { formatSongDuration, durationTostring } from '@/utils';
 import store from '@/store/index';
 
 const Footer: React.FC = ({ songDetail, songPlayStatus, changeSongPlayStatus }: any) => {
-  console.log(songDetail);
   const [song, setSong] = useState<SongInfo>(songDetail);
-  const [currentTime, setCurTime] = useState<string>('00:00');
-  const [fullTime, setFullTime] = useState<string>('00:00');
+  const [currentTimeShow, setCurTimeShow] = useState<string>('00:00');
+  const [fullTimeShow, setFullTimeShow] = useState<string>('00:00');
+  const [fullTime, setFullTime] = useState<number>(0);
+  const [barWidth, setBarWidth] = useState<string>('0');
   const [isPlay, setIsPlay] = useState<boolean>(false);
-  const audio: any = document.getElementById('music');
+  const music: any = useRef();
+
+  const musicCurrentTime = () => {
+    console.log(music.current.currentTime, fullTime);
+    const time: number = parseInt(music.current.currentTime);
+    const timeStr: string = durationTostring(time);
+    let width: string = '0';
+    if (fullTime !== 0) {
+      width = (time / fullTime * 100) + '%';
+    }
+    console.log(width);
+    setCurTimeShow(timeStr);
+    setBarWidth(width)
+  };
+
+  useEffect(() => {
+    music.current.addEventListener('timeupdate', musicCurrentTime, false);
+    return () => {
+      music.current.removeEventListener('timeupdate', musicCurrentTime);
+    };
+  }, [fullTime])
 
   useEffect(() => {
     const unsubscribe = store.subscribe(() => {
       const songPlayStatus = store.getState().songPlayStatus;
-      setTimeout(() => {
-        if (audio) {
-          try {
-            setIsPlay(false);
-            audio.pause()
-            if (songPlayStatus.status === 'play') {
-              setIsPlay(true);
-              audio.play()
-              // 设置音量
-              audio.volume = songPlayStatus.volume
-            }
-          } catch (e) {
-            console.log(e);
-          }
-
+      if (music && music.current) {
+        if (songPlayStatus.status === 'play') {
+          setIsPlay(true);
+          music.current.play()
+        } else {
+          setIsPlay(false);
+          music.current.pause()
         }
-      }, 0);
+      }
     });
-
     return () => {
       unsubscribe();
     };
-  }, [audio])
+  }, [])
 
   useEffect(() => {
     if (songDetail.songDetailInfo.url !== '' && songDetail.songDetailInfo.url !== song.songDetailInfo.url) {
       setSong(songDetail);
       const ct = '00:00';
+      setCurTimeShow(ct);
       const ft = formatSongDuration(songDetail.songInfo.duration);
+      setFullTime(ft);
+      setTimeout(() => {
+        console.log(ft, fullTime);
+      }, 0)
       const fts = durationTostring(ft);
+      setFullTimeShow(fts);
       changeSongPlayStatus({
-        status: 'play',
         fullTime: ft,
         currentTime: 0,
         fullTimeShow: fts,
         currentTimeShow: ct,
         volume: songPlayStatus.volume
       });
-      setCurTime(ct);
-      setFullTime(fts);
     }
-  }, [songDetail, changeSongPlayStatus, song, songPlayStatus]);
+  }, [songDetail]);
 
   const handlerSongPlay = () => {
     const status: string = songPlayStatus.status === 'play' ? 'pause' : 'play';
@@ -86,13 +101,13 @@ const Footer: React.FC = ({ songDetail, songPlayStatus, changeSongPlayStatus }: 
         </div>
       </div>
       <div className={`${styles['play-box']}`}>
-        <span>{currentTime}</span>
+        <span>{currentTimeShow}</span>
         <div className={`${styles['play-bar']}`}>
-          <audio id="music" src={songDetail.songDetailInfo.url} preload={"auto"} hidden></audio>
-          <div className={`${styles['play-bar-in']}`}></div>
-          <div className={`${styles['play-bar-btn']}`}></div>
+          <audio ref={music} src={songDetail.songDetailInfo.url} preload={"auto"} hidden></audio>
+          <div className={`${styles['play-bar-in']}`} style={{ width: barWidth }}></div>
+          <div className={`${styles['play-bar-btn']}`} style={{ left: barWidth }}></div>
         </div>
-        <span>{fullTime}</span>
+        <span>{fullTimeShow}</span>
       </div>
       <div className={`${styles['play-tools']}`}>
         <SoundFilled />

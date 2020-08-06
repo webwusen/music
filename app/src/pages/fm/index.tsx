@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import styles from './index.module.less';
 import { getPersonalFm } from '@/api/layout';
 import getSongDetails from '@/utils/getSongDetail';
-import { SongInfo } from '@/types/song';
+import { SongInfo, SongPlayStatusType } from '@/types/song';
 import { connect } from 'react-redux';
 import { setSongInfo } from '@/store/actions/index';
+import store from '@/store/index';
+import { setSongPlayStatus } from '@/store/actions/index';
 
-const Fm: React.FC = ({ changeSong }: any) => {
+const Fm: React.FC = ({ changeSong, changeSongPlayStatus }: any) => {
 
   const fmValue: SongInfo[] = [
     {
@@ -41,6 +43,7 @@ const Fm: React.FC = ({ changeSong }: any) => {
   ];
   const [fmList, setFmlist] = useState<SongInfo[]>([]);
   const [curFm, setCurFm] = useState<SongInfo[]>(fmValue);
+  const [playStatus, setPlayStatus] = useState('pause');
 
   useEffect(() => {
     // 获取fm
@@ -54,11 +57,20 @@ const Fm: React.FC = ({ changeSong }: any) => {
       }
       setCurFm(data);
     })
+
+    // 监听歌曲播放状态
+    const unsubscribe = store.subscribe(() => {
+      const status: string = store.getState().songPlayStatus.status;
+      setPlayStatus(status);
+    })
+    return () => {
+      unsubscribe()
+    }
   }, []);
 
   useEffect(() => {
     changeSong(curFm[0]);
-  }, [curFm, changeSong])
+  }, [curFm])
 
   // 获取歌曲url、歌曲歌词
   const getSong = async (data: any[]) => {
@@ -70,11 +82,26 @@ const Fm: React.FC = ({ changeSong }: any) => {
     return list;
   }
 
+  const changePlayStatus = () => {
+    const status = (playStatus === 'play' ? 'pause' : 'play');
+    changeSongPlayStatus({
+      status: status
+    })
+    setPlayStatus(status);
+  }
+
   return (
     <div className={`${styles['fm']}`}>
       <div className={`${styles['song']}`}>
         <div className={`${styles['song-left']}`}>
           <div className={`${styles['music-box']}`}>
+            <div className={`${styles['play-btn']} ${playStatus === 'play' ? styles['play'] : ''}`} onClick={changePlayStatus}>
+              {
+                playStatus === 'play' ?
+                  <i className={`iconfont iconpause`}></i> :
+                  <i className={`iconfont iconplay`}></i>
+              }
+            </div>
             <div className={`${styles['prev-music']}`}></div>
             <div className={`${styles['cur-music']}`}>
               <img className={`${styles['music-pic']}`} alt="" src={curFm[0].songInfo.album.picUrl + '?params=270y270'} />
@@ -124,6 +151,9 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     changeSong: (data: SongInfo) => {
       dispatch(setSongInfo(data))
+    },
+    changeSongPlayStatus: (data: SongPlayStatusType) => {
+      dispatch(setSongPlayStatus(data))
     }
   }
 }

@@ -18,6 +18,7 @@
     position: relative;
     width: 270px;
     height: 270px;
+    user-select: none;
   }
 
   .song-right {
@@ -87,5 +88,44 @@
 
   .words {
     margin-bottom: 20px;
+  }
+
+  .play-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 54px;
+    height: 54px;
+    margin-left: -27px;
+    margin-top: -27px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, .4);
+    z-index: 5;
+    border: 1px solid rgba(255, 255, 255, .7);
+    transition: all .3s ease;
+    cursor: pointer;
+
+    &:hover {
+      border: 1px solid rgba(255, 255, 255, .9);
+      background-color: rgba(0, 0, 0, .6);
+    }
+
+    &.play {
+      top: 100%;
+      left: 100%;
+      margin-left: -64px;
+      margin-top: -64px;
+    }
+
+    i {
+      height: 20px;
+      line-height: 20px;
+      font-size: 18px;
+      color: #fff;
+    }
   }
 }

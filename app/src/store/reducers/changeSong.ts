@@ -26,7 +26,7 @@ const initialSongPlayStatus: SongPlayStatusType = {
   currentTimeShow: '00:00',
   fullTimeShow: '00:00',
   status: 'pause',
-  volume: 0.05
+  volume: 0.01
 }
 
 export const changeSongPlayStatus = (state = initialSongPlayStatus, action: setSongPlayStatusType) => {
