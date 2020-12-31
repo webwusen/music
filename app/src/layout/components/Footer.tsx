@@ -14,17 +14,15 @@ const Footer: React.FC = ({ songDetail, songPlayStatus, changeSongPlayStatus }: 
   const [fullTime, setFullTime] = useState<number>(0);
   const [barWidth, setBarWidth] = useState<string>('0');
   const [isPlay, setIsPlay] = useState<boolean>(false);
-  const music: any = useRef();
+  const music: React.RefObject<any> = useRef();
 
   const musicCurrentTime = () => {
-    console.log(music.current.currentTime, fullTime);
     const time: number = parseInt(music.current.currentTime);
     const timeStr: string = durationTostring(time);
     let width: string = '0';
     if (fullTime !== 0) {
       width = (time / fullTime * 100) + '%';
     }
-    console.log(width);
     setCurTimeShow(timeStr);
     setBarWidth(width)
   };
